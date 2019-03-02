@@ -16,7 +16,9 @@
     }else{
         weakSelf.scheduleStoreLabel.backgroundColor = [UIColor redColor];
     }
-    return [NSString stringWithFormat:@"还剩%ld秒哦",remainSec];
+    //显示剩余几分几秒
+    NSString *timeformatStr = [NSDate getDateStrWithSec:remainSec dateFormat:@"mm分ss秒"];
+    return timeformatStr;
 }];
 //开始倒计时
 [self.scheduleStoreLabel startCountDown];
