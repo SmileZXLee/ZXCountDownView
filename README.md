@@ -31,6 +31,23 @@
     return [NSString stringWithFormat:@"%ld秒后重发",remainSec];
 }];
 ```
+```
+#pragma mark 点击了获取验证码按钮
+- (IBAction)getCheckCodeAction:(id)sender {
+    //判断如果手机号码不合法，可不触发倒计时
+    if(0){
+        self.getCheckCodeBtn.start = NO;
+        return;
+    }
+    NSLog(@"执行获取验证码操作!!");
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //判断如果验证码请求失败，可重置倒计时按钮
+        if(0){
+            [self.getCheckCodeBtn resume];
+        }
+    });
+}
+```
 * 您也可以不依赖UI控件，直接开启一个倒计时任务
 
 ```objective-c
