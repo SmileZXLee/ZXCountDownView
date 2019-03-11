@@ -18,10 +18,14 @@
 @implementation ZXAutoCountDownBtn
 -(void)initOpr{
     [super initOpr];
+    self.start = YES;
 }
 - (void)sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event{
     [super sendAction:action to:target forEvent:event];
-    [self startAutoCountDown];
+    if(self.start){
+        [self startAutoCountDown];
+    }
+    self.start = YES;
 }
 -(void)startAutoCountDown{
     if(self.enabled){
@@ -52,6 +56,13 @@
     if(disTime > 0 && !self.disableScheduleStore){
         [self startAutoCountDown];
     }
+}
+-(void)resume{
+    [self stopCountDown];
+    self.enabled = YES;
+    [self setTitle:[self valueForKey:@"orgText"] forState:UIControlStateNormal];
+    [self setTitleColor:[self valueForKey:@"orgTextColor"] forState:UIControlStateNormal];
+    self.backgroundColor = [self valueForKey:@"orgBacColor"];
 }
 -(void)dealloc{
     [self invalidateTimer];

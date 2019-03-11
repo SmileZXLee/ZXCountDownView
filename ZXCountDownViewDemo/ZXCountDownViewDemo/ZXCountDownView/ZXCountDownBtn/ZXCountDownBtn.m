@@ -49,7 +49,9 @@
         if(remainSec > 0){
             [weakSelf setTitle:btnTitle forState:UIControlStateNormal];
         }else{
-           [weakSelf setTitle:weakSelf.orgText forState:UIControlStateNormal];
+            [weakSelf setTitle:weakSelf.orgText forState:UIControlStateNormal];
+            [weakSelf setTitleColor:weakSelf.orgTextColor forState:UIControlStateNormal];
+            weakSelf.backgroundColor = weakSelf.orgBacColor;
         }
     }];
 }
