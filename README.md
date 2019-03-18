@@ -1,7 +1,7 @@
 # ZXCountDownView
 
 ## 效果图
-![Image text](http://www.zxlee.cn/ZXCountDownViewDemo1.gif) 
+![Image text](https://github.com/SmileZXLee/ZXCountDownView/blob/master/DemoImg/ZXCountDownViewDemo1.gif?raw=true) 
 
 ***
 
