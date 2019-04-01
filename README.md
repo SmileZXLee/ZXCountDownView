@@ -1,4 +1,17 @@
 # ZXCountDownView
+## 安装
+### 通过CocoaPods安装
+```ruby
+pod 'ZXCountDownView'
+```
+### 手动导入
+* 将ZXCountDownView拖入项目中。
+
+### 导入头文件
+```objective-c
+#import "ZXCountDownView.h"
+```
+***
 
 ## 效果图
 ![Image text](https://github.com/SmileZXLee/ZXCountDownView/blob/master/DemoImg/ZXCountDownViewDemo1.gif?raw=true) 
