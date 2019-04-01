@@ -31,7 +31,7 @@
     return [NSString stringWithFormat:@"%ld秒后重发",remainSec];
 }];
 ```
-```
+```objective-c
 #pragma mark 点击了获取验证码按钮
 - (IBAction)getCheckCodeAction:(id)sender {
     //判断如果手机号码不合法，可不触发倒计时
@@ -74,3 +74,4 @@ obj.disableScheduleStore = NO;
 //结束倒计时
 -(void)stopCountDown;
 ```
+* 若需要实现多个不同的倒计时view共用进度，例如登录获取验证码按钮，注册获取验证码按钮，找回密码获取验证码按钮，只需设置相同mark即可。
