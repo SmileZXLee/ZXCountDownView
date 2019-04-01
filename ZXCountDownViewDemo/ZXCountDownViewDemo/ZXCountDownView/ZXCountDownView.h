@@ -1,10 +1,10 @@
 //
 //  ZXCountDownHeaders.h
-//  ZXCountDownViewDemo
+//  ZXCountDownView
 //
 //  Created by 李兆祥 on 2019/2/15.
 //  Copyright © 2019 李兆祥. All rights reserved.
-//
+//  https://github.com/SmileZXLee/ZXCountDownView
 
 #ifndef ZXCountDownHeaders_h
 #define ZXCountDownHeaders_h

@@ -47,7 +47,7 @@
 		748CCFE722167D84003418B9 /* ZXCountDownCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXCountDownCore.h; sourceTree = "<group>"; };
 		748CCFE822167D84003418B9 /* ZXCountDownCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZXCountDownCore.m; sourceTree = "<group>"; };
 		748CCFEE2216804F003418B9 /* ZXCountDownDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXCountDownDefine.h; sourceTree = "<group>"; };
-		748CCFEF22168067003418B9 /* ZXCountDownHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXCountDownHeaders.h; sourceTree = "<group>"; };
+		748CCFEF22168067003418B9 /* ZXCountDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXCountDownView.h; sourceTree = "<group>"; };
 		748CD0012219314D003418B9 /* ZXCountDownBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXCountDownBtn.h; sourceTree = "<group>"; };
 		748CD0022219314D003418B9 /* ZXCountDownBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZXCountDownBtn.m; sourceTree = "<group>"; };
 		748CD004221932F1003418B9 /* ZXAutoCountDownBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXAutoCountDownBtn.h; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 				748CD00722193AE1003418B9 /* ZXCountDownLabel */,
 				748CD00822193AF9003418B9 /* ZXCountDownBtn */,
 				748CCFEE2216804F003418B9 /* ZXCountDownDefine.h */,
-				748CCFEF22168067003418B9 /* ZXCountDownHeaders.h */,
+				748CCFEF22168067003418B9 /* ZXCountDownView.h */,
 			);
 			path = ZXCountDownView;
 			sourceTree = "<group>";

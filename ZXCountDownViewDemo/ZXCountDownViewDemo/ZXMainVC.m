@@ -7,7 +7,7 @@
 //
 
 #import "ZXMainVC.h"
-#import "ZXCountDownHeaders.h"
+#import "ZXCountDownView.h"
 @interface ZXMainVC()
 @property (weak, nonatomic) IBOutlet ZXCountDownLabel *scheduleStoreLabel;
 

@@ -1,10 +1,10 @@
 //
 //  ZXAutoCountDownBtn.h
-//  ZXCountDownViewDemo
+//  ZXCountDownView
 //
 //  Created by 李兆祥 on 2019/2/17.
 //  Copyright © 2019 李兆祥. All rights reserved.
-//
+//  https://github.com/SmileZXLee/ZXCountDownView
 
 #import <UIKit/UIKit.h>
 #import "ZXCountDownBtn.h"
