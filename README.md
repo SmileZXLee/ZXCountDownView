@@ -1,4 +1,8 @@
 # ZXCountDownView
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/skx926/KSPhotoBrowser/master/LICENSE)&nbsp;
+[![CocoaPods](http://img.shields.io/cocoapods/v/ZXCountDownView.svg?style=flat)](http://cocoapods.org/?q=ZXCountDownView)&nbsp;
+[![CocoaPods](http://img.shields.io/cocoapods/p/ZXCountDownView.svg?style=flat)](http://cocoapods.org/?q=ZXCountDownView)&nbsp;
+[![Support](https://img.shields.io/badge/support-iOS%208.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
 ## 安装
 ### 通过CocoaPods安装
 ```ruby
