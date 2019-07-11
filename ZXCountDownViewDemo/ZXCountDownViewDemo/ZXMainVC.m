@@ -26,6 +26,7 @@
     [self initNormalLabel];
     [self initScheduleStoreBtn];
     [self initGetCheckCodeBtn];
+    [self initPureCBtn];
 }
 
 #pragma mark 初始化自动保存进度Label
@@ -67,8 +68,25 @@
         return [NSString stringWithFormat:@"%ld秒后重发",remainSec];
     }];
 }
-#pragma mark -Action
 
+#pragma mark 初始化纯代码点击获取验证码Btn
+-(void)initPureCBtn{
+    ZXAutoCountDownBtn *countDownBtn = [[ZXAutoCountDownBtn alloc]init];
+    countDownBtn.frame = CGRectMake(20, 250, 100, 20);
+    countDownBtn.backgroundColor = [UIColor blueColor];
+    [countDownBtn setTitle:@"纯代码按钮" forState:UIControlStateNormal];
+    countDownBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [countDownBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [countDownBtn addTarget:self action:@selector(pureCBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:countDownBtn];
+    [countDownBtn enableAutoCountDown:10 mark:@"GetPureCheckCodeBtn" resTextFormat:^NSString *(long remainSec) {
+        return [NSString stringWithFormat:@"%ld秒后重发",remainSec];
+    }];
+}
+#pragma mark -Action
+-(void)pureCBtnAction:(ZXAutoCountDownBtn *)btn{
+    //DoSomething
+}
 #pragma mark 点击了获取验证码按钮
 - (IBAction)getCheckCodeAction:(id)sender {
     //判断如果手机号码不合法，可不触发倒计时

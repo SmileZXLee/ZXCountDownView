@@ -60,6 +60,7 @@
     self.backgroundColor = self.orgBacColor;
 }
 -(void)startCountDown{
+    [self initOpr];
     [self.cdCore startCountDown];
 }
 -(void)reStartCountDown{
