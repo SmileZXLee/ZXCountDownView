@@ -103,7 +103,7 @@ obj.disableScheduleStore = NO;
 ///关闭倒计时
 [obj invalidateTimer];
 ```
-* 禁止倒计时停止时恢复到最初的状态（文字、文字颜色、文字背景色），默认为否，若为是，则remainSec == 0时设置的状态将无效
+* 禁止倒计时停止时恢复到最初的状态（文字、文字颜色、文字背景色），默认为否，若为否，则remainSec == 0时设置的状态将无效
 ```objective-c
 obj.disableResumeWhenEnd = YES;
 ```
