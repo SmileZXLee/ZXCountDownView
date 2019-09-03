@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 s.name         = 'ZXCountDownView'
-s.version      = '1.0.2'
-s.summary      = '一个简单易用的倒计时View，可用于例如点击获取验证码按钮，按钮被销毁后倒计时进度仍然保留，也可用于其他需要更精确严谨的情况'
+s.version      = '1.0.3'
+s.summary      = '一个简单易用的倒计时View，可用于快速创建点击获取验证码按钮。【重新进入当前页面或重启程序倒计时不会重置，仍会继续执行】'
 s.homepage     = 'https://github.com/SmileZXLee/ZXCountDownView'
 s.license      = 'MIT'
 s.authors      = {'李兆祥' => '393727164@qq.com'}

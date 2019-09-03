@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,6 +15,7 @@
                 <outlet property="normalLabel" destination="Hro-37-ouz" id="c3L-WQ-rid"/>
                 <outlet property="scheduleStoreBtn" destination="fw7-ZU-VdH" id="2pU-Pg-8m5"/>
                 <outlet property="scheduleStoreLabel" destination="Rfi-mc-82I" id="FMi-2G-LR8"/>
+                <outlet property="testBtn" destination="5HK-dK-fcB" id="Zgv-qN-FQh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -245,6 +246,25 @@
                         <constraint firstItem="Lrf-XC-90R" firstAttribute="top" secondItem="YeP-KE-yzg" secondAttribute="top" id="th3-Fb-GfY"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlH-PJ-x5f">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HK-dK-fcB" customClass="ZXAutoCountDownBtn">
+                            <rect key="frame" x="132.5" y="293.5" width="110" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="I1B-lo-ve3"/>
+                                <constraint firstAttribute="height" constant="40" id="Wsy-LU-M1C"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="获取验证码"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="5HK-dK-fcB" firstAttribute="centerY" secondItem="tlH-PJ-x5f" secondAttribute="centerY" constant="-20" id="8Xg-MW-8kw"/>
+                        <constraint firstItem="5HK-dK-fcB" firstAttribute="centerX" secondItem="tlH-PJ-x5f" secondAttribute="centerX" id="x3s-wF-jIZ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -252,13 +272,16 @@
                 <constraint firstAttribute="trailing" secondItem="jer-bz-hDp" secondAttribute="trailing" id="3sE-Gb-X1l"/>
                 <constraint firstAttribute="trailing" secondItem="e5z-jH-PO6" secondAttribute="trailing" id="6Qg-OJ-l69"/>
                 <constraint firstAttribute="bottom" secondItem="YeP-KE-yzg" secondAttribute="bottom" id="7HN-uc-dB0"/>
+                <constraint firstAttribute="bottom" secondItem="tlH-PJ-x5f" secondAttribute="bottom" id="DVB-Te-raB"/>
                 <constraint firstItem="uwq-fD-Zek" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dgq-iD-OzF"/>
                 <constraint firstAttribute="trailing" secondItem="YeP-KE-yzg" secondAttribute="trailing" id="Fe2-fm-bCL"/>
+                <constraint firstItem="tlH-PJ-x5f" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KRb-OA-gaL"/>
                 <constraint firstItem="nXU-aZ-1eT" firstAttribute="top" secondItem="uwq-fD-Zek" secondAttribute="bottom" id="Lbl-s8-RC2"/>
                 <constraint firstItem="jer-bz-hDp" firstAttribute="top" secondItem="nXU-aZ-1eT" secondAttribute="bottom" id="Ogb-ao-UcF"/>
                 <constraint firstItem="e5z-jH-PO6" firstAttribute="top" secondItem="jer-bz-hDp" secondAttribute="bottom" id="RCf-nP-IRq"/>
                 <constraint firstAttribute="trailing" secondItem="nXU-aZ-1eT" secondAttribute="trailing" id="Zz3-rV-xpI"/>
                 <constraint firstAttribute="trailing" secondItem="uwq-fD-Zek" secondAttribute="trailing" id="byx-P5-fH4"/>
+                <constraint firstAttribute="trailing" secondItem="tlH-PJ-x5f" secondAttribute="trailing" id="cmS-gE-TEa"/>
                 <constraint firstItem="jer-bz-hDp" firstAttribute="top" secondItem="nXU-aZ-1eT" secondAttribute="bottom" id="dXY-Uv-aaY"/>
                 <constraint firstItem="jer-bz-hDp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gpM-Nf-mlH"/>
                 <constraint firstItem="YeP-KE-yzg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hzK-lw-SQJ"/>
@@ -266,7 +289,9 @@
                 <constraint firstItem="nXU-aZ-1eT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kj2-4K-7fw"/>
                 <constraint firstItem="e5z-jH-PO6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="s1w-n2-lsx"/>
                 <constraint firstItem="nXU-aZ-1eT" firstAttribute="top" secondItem="uwq-fD-Zek" secondAttribute="bottom" id="vfg-QG-y4n"/>
+                <constraint firstItem="tlH-PJ-x5f" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ya7-MF-Zax"/>
             </constraints>
+            <point key="canvasLocation" x="138.40000000000001" y="113.79310344827587"/>
         </view>
     </objects>
 </document>

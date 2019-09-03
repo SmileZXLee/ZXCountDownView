@@ -15,6 +15,8 @@ typedef NSString *(^textFormatBlock) (long remainSec);
 -(void)initOpr;
 ///是否不存储倒计时进度，默认为否
 @property(nonatomic,assign)BOOL disableScheduleStore;
+///是否禁止倒计时停止时是否恢复到最初的状态（按钮文字、按钮文字颜色、按钮背景色），默认为否
+@property(nonatomic,assign)BOOL disableResumeWhenEnd;
 ///设置倒计时时间，倒计时标志，并回调block，ZXCountDown依据mark来分别存储不同倒计时任务剩余的倒计时时间
 -(void)setCountDown:(long)countDownSec mark:(NSString *)mark resTextFormat:(textFormatBlock)textFormat;
 ///开始倒计时

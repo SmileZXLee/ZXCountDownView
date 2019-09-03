@@ -31,8 +31,9 @@
 }
 
 -(void)awakeFromNib{
-    [super awakeFromNib];
     [self initOpr];
+    [super awakeFromNib];
+    
 }
 
 -(void)initOpr{
@@ -49,9 +50,11 @@
         if(remainSec > 0){
             [weakSelf setTitle:btnTitle forState:UIControlStateNormal];
         }else{
-            [weakSelf setTitle:weakSelf.orgText forState:UIControlStateNormal];
-            [weakSelf setTitleColor:weakSelf.orgTextColor forState:UIControlStateNormal];
-            weakSelf.backgroundColor = weakSelf.orgBacColor;
+            if(weakSelf.disableResumeWhenEnd){
+                [weakSelf setTitle:btnTitle forState:UIControlStateNormal];
+                return;
+            }
+            [weakSelf resumeOrgStatus];
         }
     }];
 }

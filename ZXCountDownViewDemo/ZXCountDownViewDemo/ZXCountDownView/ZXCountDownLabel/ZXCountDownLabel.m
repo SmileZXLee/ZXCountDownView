@@ -47,8 +47,13 @@
     self.cdCore.disableScheduleStore = self.disableScheduleStore;
     ZXCountDownWeakSelf;
     [self.cdCore setCountDown:countDownSec mark:mark resBlock:^(long remainSec) {
-        weakSelf.text = textFormat(remainSec);
-        if(!(remainSec > 0)){
+        if(remainSec > 0){
+            weakSelf.text = textFormat(remainSec);
+        }else{
+            if(weakSelf.disableResumeWhenEnd){
+                weakSelf.text = textFormat(remainSec);
+                return;
+            }
             [weakSelf resumeOrgStatus];
         }
     }];

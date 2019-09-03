@@ -18,16 +18,16 @@
 @implementation ZXAutoCountDownBtn
 -(void)initOpr{
     [super initOpr];
-    self.start = YES;
 }
 - (void)sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event{
     [super sendAction:action to:target forEvent:event];
-    if(self.start){
-        [self startAutoCountDown];
+    if(!self.terminateCountDown){
+        [self startCountDown];
     }
-    self.start = YES;
+    self.terminateCountDown = NO;
 }
--(void)startAutoCountDown{
+
+-(void)startCountDown{
     if(self.enabled){
         ZXCountDownWeakSelf;
         [self setCountDown:self.countDownSec mark:self.countDownMark resTextFormat:^NSString *(long remainSec) {
@@ -42,7 +42,7 @@
                 return nil;
             }
         }];
-        [self startCountDown];
+        [super startCountDown];
     }
 }
 -(void)enableAutoCountDown:(long)countDownSec mark:(NSString *)mark resTextFormat:(textFormatBlock)textFormat{
@@ -54,7 +54,7 @@
     ZXCountDownCore *core = [[ZXCountDownCore alloc]init];
     long disTime = [core getDisTimeWithMark:mark];
     if(disTime > 0 && !self.disableScheduleStore){
-        [self startAutoCountDown];
+        [self startCountDown];
     }
 }
 -(void)resume{
