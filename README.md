@@ -89,20 +89,27 @@ ZXCountDownCore *countDownCore = [[ZXCountDownCore alloc]init];
 * 启用或禁用自动存储倒计时进度：
 ```objective-c
 //disableScheduleStore 是否不存储倒计时进度，默认为NO，即默认存储倒计时进度
-btn.disableScheduleStore = YES;
-btn.disableScheduleStore = NO;
+obj.disableScheduleStore = YES;
+obj.disableScheduleStore = NO;
 ```
 * 通用倒计时控制：
 ```objective-c
 //开始倒计时
--(void)startCountDown;
+[obj startCountDown];
 //重新开始倒计时
--(void)reStartCountDown;
+[obj reStartCountDown];
 //结束倒计时
--(void)stopCountDown;
+[obj stopCountDown];
+///关闭倒计时
+[obj invalidateTimer];
 ```
+* 禁止倒计时停止时恢复到最初的状态（文字、文字颜色、文字背景色），默认为否，若为是，则remainSec == 0时设置的状态将无效
+```objective-c
+obj.disableResumeWhenEnd = YES;
+```
+
 ### 注意
 * 若需要实现多个不同的倒计时view共用进度，例如登录获取验证码按钮，注册获取验证码按钮，找回密码获取验证码按钮，只需设置相同mark即可。
-* ZXCountDownView中倒计时结束默认会将UI控件设置回最初的状态，例如刚开始倒计时按钮文字问“点击获取验证码”，倒计时结束您需要设置为“重新获取”，则您需要设置btn.disableResumeWhenEnd = YES，禁止自动将空间设置回最初的状态，并且在resTextFormat中判断remainSec == 0时将按钮设置为“重新获取”即可。
+* ZXCountDownView中倒计时结束默认会将UI控件设置回最初的状态，例如刚开始倒计时按钮文字为“点击获取验证码”，倒计时结束您需要设置为“重新获取”，则您需要设置btn.disableResumeWhenEnd = YES，禁止自动将空间设置回最初的状态，并且在resTextFormat中判断remainSec == 0时将按钮设置为“重新获取”即可。
 
 
