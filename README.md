@@ -56,12 +56,22 @@ pod 'ZXCountDownView'
         self.getCheckCodeBtn.start = NO;
         return;
     }
+    //如果需要过2秒再执行倒计时
+    if(0){
+        self.getCheckCodeBtn.terminateCountDown = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.getCheckCodeBtn startCountDown];
+            NSLog(@"执行获取验证码操作!!");
+        });
+        return;
+    }
     NSLog(@"执行获取验证码操作!!");
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //判断如果验证码请求失败，可重置倒计时按钮
         if(0){
             [self.getCheckCodeBtn resume];
         }
+        
     });
 }
 ```
@@ -79,10 +89,10 @@ ZXCountDownCore *countDownCore = [[ZXCountDownCore alloc]init];
 * 启用或禁用自动存储倒计时进度：
 ```objective-c
 //disableScheduleStore 是否不存储倒计时进度，默认为NO，即默认存储倒计时进度
-obj.disableScheduleStore = YES;
-obj.disableScheduleStore = NO;
+btn.disableScheduleStore = YES;
+btn.disableScheduleStore = NO;
 ```
-* 倒计时控制：
+* 通用倒计时控制：
 ```objective-c
 //开始倒计时
 -(void)startCountDown;
@@ -91,4 +101,8 @@ obj.disableScheduleStore = NO;
 //结束倒计时
 -(void)stopCountDown;
 ```
+### 注意
 * 若需要实现多个不同的倒计时view共用进度，例如登录获取验证码按钮，注册获取验证码按钮，找回密码获取验证码按钮，只需设置相同mark即可。
+* ZXCountDownView中倒计时结束默认会将UI控件设置回最初的状态，例如刚开始倒计时按钮文字问“点击获取验证码”，倒计时结束您需要设置为“重新获取”，则您需要设置btn.disableResumeWhenEnd = YES，禁止自动将空间设置回最初的状态，并且在resTextFormat中判断remainSec == 0时将按钮设置为“重新获取”即可。
+
+
