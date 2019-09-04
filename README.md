@@ -95,17 +95,17 @@ obj.disableScheduleStore = NO;
 * 通用倒计时控制：
 ```objective-c
 //开始倒计时
-[obj startCountDown];
+[view startCountDown];
 //重新开始倒计时
-[obj reStartCountDown];
+[view reStartCountDown];
 //结束倒计时
-[obj stopCountDown];
+[view stopCountDown];
 ///关闭倒计时
-[obj invalidateTimer];
+[view invalidateTimer];
 ```
 * 禁止倒计时停止时恢复到最初的状态（文字、文字颜色、文字背景色），默认为否，若为否，则remainSec == 0时设置的状态将无效
 ```objective-c
-obj.disableResumeWhenEnd = YES;
+view.disableResumeWhenEnd = YES;
 ```
 
 ### 注意
