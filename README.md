@@ -18,7 +18,7 @@ pod 'ZXCountDownView'
 ***
 
 ## 效果图
-![Image text](https://github.com/SmileZXLee/ZXCountDownView/blob/master/DemoImg/ZXCountDownViewDemo3.gif?raw=true) 
+![Image text](http://www.zxlee.cn/ZXCountDownViewDemo3.gif) 
 
 ***
 
