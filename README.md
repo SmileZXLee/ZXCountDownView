@@ -89,8 +89,8 @@ ZXCountDownCore *countDownCore = [[ZXCountDownCore alloc]init];
 * 启用或禁用自动存储倒计时进度：
 ```objective-c
 //disableScheduleStore 是否不存储倒计时进度，默认为NO，即默认存储倒计时进度
-obj.disableScheduleStore = YES;
-obj.disableScheduleStore = NO;
+view.disableScheduleStore = YES;
+view.disableScheduleStore = NO;
 ```
 * 通用倒计时控制：
 ```objective-c
