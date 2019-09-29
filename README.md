@@ -1,5 +1,5 @@
 # ZXCountDownView
-[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/skx926/KSPhotoBrowser/master/LICENSE)&nbsp;
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/SmileZXLee/ZXCountDownView/master/LICENSE)&nbsp;
 [![CocoaPods](http://img.shields.io/cocoapods/v/ZXCountDownView.svg?style=flat)](http://cocoapods.org/?q=ZXCountDownView)&nbsp;
 [![CocoaPods](http://img.shields.io/cocoapods/p/ZXCountDownView.svg?style=flat)](http://cocoapods.org/?q=ZXCountDownView)&nbsp;
 [![Support](https://img.shields.io/badge/support-iOS%208.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
@@ -23,7 +23,7 @@ pod 'ZXCountDownView'
 ***
 
 ## Demo
-
+### ZXCountDownLabel
 * 设置一个倒计时Label，且自动记录倒计时进度：
 ```objective-c
 //第一个参数40即为倒计时时间为40秒，第二个参数mark用于标记区分当前倒计时任务和其他倒计时任务，确保与其他任务不重名即可，block第一个参数即为剩余秒数，block返回值即为显示在Label上的文字。(此处实现了一个倒计时40秒，且显示”还剩40、39、38...秒哦“的Label)
@@ -37,11 +37,16 @@ pod 'ZXCountDownView'
     NSString *timeformatStr = [NSDate getDateStrWithSec:remainSec dateFormat:@"mm分ss秒"];
     return timeformatStr;
 }];
-//开始倒计时
+```
+* 开始倒计时
+```objective-c
 [self.scheduleStoreLabel startCountDown];
 ```
-* 设置一个点击获取验证码的Button，且自动记录倒计时进度：
 
+### ZXCountDownBtn
+* 与ZXCountDownLabel类似
+### ZXAutoCountDownBtn
+* 设置一个点击获取验证码的Button，且点击后自动开启倒计时，重启App后仍然保持倒计时进度：
 ```objective-c
 //此处实现了一个倒计时20秒，且显示“还剩20、19、18...秒后重试”的Btn，且退出重新进入当前控制器或重启App不受影响。
 [self.getCheckCodeBtn enableAutoCountDown:20 mark:@"GetCheckCodeBtn" resTextFormat:^NSString *(long remainSec) {
@@ -75,6 +80,8 @@ pod 'ZXCountDownView'
     });
 }
 ```
+
+### ZXCountDownCore
 * 您也可以不依赖UI控件，直接开启一个倒计时任务
 
 ```objective-c
@@ -86,6 +93,7 @@ ZXCountDownCore *countDownCore = [[ZXCountDownCore alloc]init];
 //开始倒计时
 [countDownCore startCountDown];
 ```
+## Other
 * 启用或禁用自动存储倒计时进度：
 ```objective-c
 //disableScheduleStore 是否不存储倒计时进度，默认为NO，即默认存储倒计时进度
@@ -111,5 +119,4 @@ view.disableResumeWhenEnd = YES;
 ### 注意
 * 若需要实现多个不同的倒计时view共用进度，例如登录获取验证码按钮，注册获取验证码按钮，找回密码获取验证码按钮，只需设置相同mark即可。
 * ZXCountDownView中倒计时结束默认会将UI控件设置回最初的状态，例如刚开始倒计时按钮文字为“点击获取验证码”，倒计时结束您需要设置为“重新获取”，则您需要设置btn.disableResumeWhenEnd = YES，禁止自动将空间设置回最初的状态，并且在resTextFormat中判断remainSec == 0时将按钮设置为“重新获取”即可。
-
 
