@@ -32,7 +32,7 @@
 
 #pragma mark 初始化自动保存进度Label
 -(void)initScheduleStoreLabel{
-    ZXCountDownWeakSelf;
+    __weak __typeof(self) weakSelf = self;
     [self.scheduleStoreLabel setCountDown:40 mark:@"ScheduleStoreLabel" resTextFormat:^NSString *(long remainSec) {
         if(remainSec > 30){
             weakSelf.scheduleStoreLabel.backgroundColor = [UIColor orangeColor];
@@ -66,6 +66,7 @@
 
 #pragma mark 初始化点击获取验证码Btn
 -(void)initGetCheckCodeBtn{
+    __weak __typeof(self) weakSelf = self;
     [self.getCheckCodeBtn enableAutoCountDown:20 mark:@"GetCheckCodeBtn" resTextFormat:^NSString *(long remainSec) {
         return [NSString stringWithFormat:@"%ld秒后重发",remainSec];
     }];
@@ -73,10 +74,10 @@
     self.testBtn.disableResumeWhenEnd = YES;
     [self.testBtn enableAutoCountDown:20 mark:@"GetCheckCodeBtn" resTextFormat:^NSString *(long remainSec) {
         if(remainSec > 0){
-            self.testBtn.backgroundColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1];
+            weakSelf.testBtn.backgroundColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1];
             return [NSString stringWithFormat:@"%ld秒后重发",remainSec];
         }else{
-            self.testBtn.backgroundColor = [UIColor colorWithRed:3/255.0 green:139/255.0 blue:254/255.0 alpha:1];
+            weakSelf.testBtn.backgroundColor = [UIColor colorWithRed:3/255.0 green:139/255.0 blue:254/255.0 alpha:1];
             return [NSString stringWithFormat:@"重新发送"];
         }
     }];
@@ -85,6 +86,7 @@
 
 #pragma mark 初始化纯代码点击获取验证码Btn
 -(void)initPureCBtn{
+    return;
     ZXAutoCountDownBtn *countDownBtn = [[ZXAutoCountDownBtn alloc]init];
     countDownBtn.frame = CGRectMake(20, 250, 100, 20);
     
