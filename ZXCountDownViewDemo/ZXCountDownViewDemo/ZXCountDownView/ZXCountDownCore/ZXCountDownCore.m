@@ -19,12 +19,14 @@
 @property(nonatomic,assign)long timeout;
 @property(nonatomic,assign)long orgCountDownSec;
 @property(nonatomic,assign)long endTimestamp;
+@property(nonatomic,assign)long lastTimeout;
 @property(nonatomic,strong)NSMutableDictionary *markDic;
 @property(nonatomic,copy)countDownBlock resBlock;
 @end
 @implementation ZXCountDownCore
 #pragma mark 开启倒计时
 -(void)startCountDown{
+    if(!self.timeout)return;
     if(self.timer){
         if(!self.didStart){
             [self refMarkDic];
@@ -82,11 +84,12 @@
                     [weakSelf coreRunLoop];
                 }
             });
+            dispatch_resume(self.timer);
+            if(disTime > 0 && !self.disableScheduleStore){
+                [self startCountDown];
+            }
         }
-        dispatch_resume(self.timer);
-        if(disTime > 0 && !self.disableScheduleStore){
-            [self startCountDown];
-        }
+        
     }
 }
 -(void)coreRunLoop{
@@ -100,7 +103,10 @@
         
     }
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.resBlock(self.timeout);
+        if(!(self.lastTimeout == 0 && self.timeout == 0)){
+            self.resBlock(self.timeout);
+            self.lastTimeout = self.timeout;
+        }
     });
 }
 #pragma mark 关闭Timer
