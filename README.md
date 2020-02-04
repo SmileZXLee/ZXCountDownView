@@ -104,6 +104,8 @@ view.disableScheduleStore = NO;
 ```objective-c
 //开始倒计时
 [view startCountDown];
+///暂停倒计时
+[view pauseCountDown];
 //重新开始倒计时
 [view reStartCountDown];
 //结束倒计时
@@ -115,8 +117,17 @@ view.disableScheduleStore = NO;
 ```objective-c
 view.disableResumeWhenEnd = YES;
 ```
+* 获取当前倒计时view的状态
+```objective-c
+ZXCountViewStatus countViewStatus = view.countViewStatus;
+//countViewStatus有以下枚举:
+//ZXCountViewStatusEnded = 0x00,    // 倒计时View倒计时未开始或已结束
+//ZXCountViewStatusPaused = 0x01,    // 倒计时View已暂停
+//ZXCountViewStatusRunning = 0x02,    // 倒计时View正在倒计时
+```
 
 ### 注意
 * 若需要实现多个不同的倒计时view共用进度，例如登录获取验证码按钮，注册获取验证码按钮，找回密码获取验证码按钮，只需设置相同mark即可。
 * ZXCountDownView中倒计时结束默认会将UI控件设置回最初的状态，例如刚开始倒计时按钮文字为“点击获取验证码”，倒计时结束您需要设置为“重新获取”，则您需要设置btn.disableResumeWhenEnd = YES，禁止自动将空间设置回最初的状态，并且在resTextFormat中判断remainSec == 0时将按钮设置为“重新获取”即可。
+* 若倒计时view执行了暂停操作且倒计时view自动储存进度开启，则重新初始化倒计时view时，它将仍然处于暂停状态。
 
