@@ -10,10 +10,10 @@
 #import "ZXCountDownDefine.h"
 #import "NSDate+ZXCountDownTime.h"
 #define ZXDocPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
+#define ZXPausedTimeoutKey [NSString stringWithFormat:@"%@_paused_timeout",self.mark]
 @interface ZXCountDownCore()
 @property(nonatomic,strong)dispatch_source_t timer;
 @property(nonatomic,copy)NSString *mark;
-@property(nonatomic,assign)BOOL didStart;
 @property(nonatomic,assign)BOOL inRunLoop;
 @property(nonatomic,assign)long countDownSec;
 @property(nonatomic,assign)long timeout;
@@ -26,22 +26,36 @@
 @implementation ZXCountDownCore
 #pragma mark 开启倒计时
 -(void)startCountDown{
-    if(!self.timeout)return;
+    if(self.countViewStatus == ZXCountViewStatusRunning)return;
     if(self.timer){
-        if(!self.didStart){
-            [self refMarkDic];
-            self.endTimestamp = [NSDate getTimeStamp] + self.countDownSec;
-            [self.markDic setValue:[NSNumber numberWithLong:self.endTimestamp] forKey:self.mark];
-            [self arcObj:self.markDic pathComponent:ZXCountDownBtnMark];
-            [self coreRunLoop];
-            self.inRunLoop = YES;
-           //dispatch_resume(self.timer);
+        [self setValue:@(ZXCountViewStatusRunning) forKey:@"countViewStatus"];
+        self.endTimestamp = [NSDate getTimeStamp] + self.countDownSec;
+        [self refMarkDic];
+        [self.markDic setValue:[NSNumber numberWithLong:self.endTimestamp] forKey:self.mark];
+        if([self.markDic.allKeys containsObject:ZXPausedTimeoutKey]){
+            [self.markDic removeObjectForKey:ZXPausedTimeoutKey];
         }
-        self.didStart = YES;
+        [self arcObj:self.markDic pathComponent:ZXCountDownBtnMark];
+        [self coreRunLoop];
+        self.inRunLoop = YES;
+        //dispatch_resume(self.timer);
     }else{
         [self reStartCountDown];
     }
 }
+
+#pragma mark 暂停倒计时
+-(void)pauseCountDown{
+    if(self.countViewStatus != ZXCountViewStatusRunning)return;
+    [self stopCountDown];
+    [self setValue:@(ZXCountViewStatusPaused) forKey:@"countViewStatus"];
+    if(self.timeout > 0){
+        [self setCountDown:self.timeout mark:self.mark resBlock:self.resBlock];
+        [self.markDic setValue:[NSNumber numberWithLong:self.timeout] forKey:ZXPausedTimeoutKey];
+        [self arcObj:self.markDic pathComponent:ZXCountDownBtnMark];
+    }
+}
+
 #pragma mark 重新开启倒计时
 -(void)reStartCountDown{
     [self stopCountDown];
@@ -51,6 +65,7 @@
 
 #pragma mark 停止倒计时
 -(void)stopCountDown{
+    [self setValue:@(ZXCountViewStatusEnded) forKey:@"countViewStatus"];
     [self invalidateTimer];
     [self refMarkDic];
     if([self.markDic.allKeys containsObject:self.mark ]){
@@ -61,21 +76,30 @@
 #pragma mark 设置倒计时配置
 -(void)setCountDown:(long)countDownSec mark:(NSString *)mark resBlock:(countDownBlock)resBlock{
     if(!mark)return;
+    self.mark = mark;
     self.resBlock = resBlock;
     [self invalidateTimer];
-    long disTime = [self getDisTimeWithMark:mark];
-    if(!self.orgCountDownSec){
-        self.orgCountDownSec = countDownSec;
+    long disTime = 0;
+    [self refMarkDic];
+    if([self.markDic.allKeys containsObject:ZXPausedTimeoutKey] && !self.disableScheduleStore){
+        long timeout = [[self.markDic valueForKey:ZXPausedTimeoutKey] longValue];
+        [self setValue:@(ZXCountViewStatusPaused) forKey:@"countViewStatus"];
+        self.countDownSec = timeout;
+        self.resBlock(self.countDownSec);
+    }else{
+        disTime = [self getDisTimeWithMark:mark];
+        if(!self.orgCountDownSec){
+            self.orgCountDownSec = countDownSec;
+        }
+        if(disTime > 0 && !self.disableScheduleStore){
+            countDownSec = disTime;
+        }
+        self.countDownSec = countDownSec;
     }
-    if(disTime > 0 && !self.disableScheduleStore){
-        countDownSec = disTime;
-    }
-    self.countDownSec = countDownSec;
-    self.mark = mark;
     ZXCountDownWeakSelf;
     if (self.timer == nil) {
         self.timeout = countDownSec;
-        if (self.timeout!=0) {
+        if (self.timeout != 0) {
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
             dispatch_source_set_timer(self.timer, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC,  0);
@@ -104,6 +128,9 @@
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         if(!(self.lastTimeout == 0 && self.timeout == 0)){
+            if(self.timeout == 0){
+                [self setValue:@(ZXCountViewStatusEnded) forKey:@"countViewStatus"];
+            }
             self.resBlock(self.timeout);
             self.lastTimeout = self.timeout;
         }
@@ -115,7 +142,7 @@
         dispatch_source_cancel(self.timer);
         self.inRunLoop = NO;
         self.timer = nil;
-        self.didStart = NO;
+        [self setValue:@(ZXCountViewStatusEnded) forKey:@"countViewStatus"];
     }
 }
 

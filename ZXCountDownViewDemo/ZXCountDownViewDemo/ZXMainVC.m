@@ -33,7 +33,7 @@
 #pragma mark 初始化自动保存进度Label
 -(void)initScheduleStoreLabel{
     __weak __typeof(self) weakSelf = self;
-    [self.scheduleStoreLabel setCountDown:40 mark:@"ScheduleStoreLabel" resTextFormat:^NSString *(long remainSec) {
+    [self.scheduleStoreLabel setCountDown:10 mark:@"ScheduleStoreLabel" resTextFormat:^NSString *(long remainSec) {
         if(remainSec > 30){
             weakSelf.scheduleStoreLabel.backgroundColor = [UIColor orangeColor];
         }else{
@@ -68,6 +68,7 @@
 -(void)initGetCheckCodeBtn{
     __weak __typeof(self) weakSelf = self;
     [self.getCheckCodeBtn enableAutoCountDown:20 mark:@"GetCheckCodeBtn" resTextFormat:^NSString *(long remainSec) {
+        NSLog(@"%ld",remainSec);
         return [NSString stringWithFormat:@"%ld秒后重发",remainSec];
     }];
     self.testBtn.backgroundColor = [UIColor colorWithRed:3/255.0 green:139/255.0 blue:254/255.0 alpha:1];
@@ -151,6 +152,13 @@
     [self.normalLabel reStartCountDown];
     [self.scheduleStoreBtn reStartCountDown];
 }
+
+- (IBAction)pauseAction:(id)sender {
+    [self.scheduleStoreLabel pauseCountDown];
+    [self.normalLabel pauseCountDown];
+    [self.scheduleStoreBtn pauseCountDown];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

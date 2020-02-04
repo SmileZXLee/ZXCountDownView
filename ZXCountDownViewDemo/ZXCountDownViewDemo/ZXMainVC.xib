@@ -199,7 +199,7 @@
                     <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrf-XC-90R">
-                            <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="94" height="50"/>
                             <color key="backgroundColor" red="0.28235294119999998" green="0.72549019609999998" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="开始">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -209,7 +209,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bY-k1-LeD">
-                            <rect key="frame" x="125" y="0.0" width="125" height="50"/>
+                            <rect key="frame" x="94" y="0.0" width="93.5" height="50"/>
                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="结束">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -219,13 +219,23 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUE-yi-toS">
-                            <rect key="frame" x="250" y="0.0" width="125" height="50"/>
+                            <rect key="frame" x="187.5" y="0.0" width="94" height="50"/>
                             <color key="backgroundColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="重置">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="resetAction:" destination="-1" eventType="touchUpInside" id="dTQ-AF-8sz"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7r-4t-Cwa">
+                            <rect key="frame" x="281.5" y="0.0" width="93.5" height="50"/>
+                            <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="暂停">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="pauseAction:" destination="-1" eventType="touchUpInside" id="P3B-N6-GjX"/>
                             </connections>
                         </button>
                     </subviews>
@@ -235,11 +245,15 @@
                         <constraint firstItem="5bY-k1-LeD" firstAttribute="width" secondItem="Lrf-XC-90R" secondAttribute="width" id="5io-cW-jac"/>
                         <constraint firstItem="5bY-k1-LeD" firstAttribute="top" secondItem="YeP-KE-yzg" secondAttribute="top" id="6ZE-D8-3Cg"/>
                         <constraint firstItem="PUE-yi-toS" firstAttribute="leading" secondItem="5bY-k1-LeD" secondAttribute="trailing" id="Dch-z9-L4M"/>
+                        <constraint firstItem="z7r-4t-Cwa" firstAttribute="top" secondItem="YeP-KE-yzg" secondAttribute="top" id="EOv-gC-zGf"/>
                         <constraint firstItem="PUE-yi-toS" firstAttribute="width" secondItem="Lrf-XC-90R" secondAttribute="width" id="K9I-CT-ItB"/>
+                        <constraint firstItem="z7r-4t-Cwa" firstAttribute="width" secondItem="Lrf-XC-90R" secondAttribute="width" id="Tw7-0V-jZa"/>
                         <constraint firstItem="PUE-yi-toS" firstAttribute="top" secondItem="YeP-KE-yzg" secondAttribute="top" id="WUC-i1-T4A"/>
                         <constraint firstAttribute="bottom" secondItem="PUE-yi-toS" secondAttribute="bottom" id="Y7K-US-Rua"/>
-                        <constraint firstItem="Lrf-XC-90R" firstAttribute="width" secondItem="YeP-KE-yzg" secondAttribute="width" multiplier="1/3" id="Ybp-bt-CF9"/>
+                        <constraint firstItem="Lrf-XC-90R" firstAttribute="width" secondItem="YeP-KE-yzg" secondAttribute="width" multiplier="1/4" id="Ybp-bt-CF9"/>
                         <constraint firstAttribute="bottom" secondItem="Lrf-XC-90R" secondAttribute="bottom" id="YcV-1x-6fV"/>
+                        <constraint firstAttribute="bottom" secondItem="z7r-4t-Cwa" secondAttribute="bottom" id="fqe-hr-Rea"/>
+                        <constraint firstItem="z7r-4t-Cwa" firstAttribute="leading" secondItem="PUE-yi-toS" secondAttribute="trailing" id="jkh-IP-jPQ"/>
                         <constraint firstAttribute="height" constant="50" id="ngH-ji-OtC"/>
                         <constraint firstAttribute="bottom" secondItem="5bY-k1-LeD" secondAttribute="bottom" id="oDM-Xz-cWp"/>
                         <constraint firstItem="Lrf-XC-90R" firstAttribute="leading" secondItem="YeP-KE-yzg" secondAttribute="leading" id="tHE-xU-qtP"/>

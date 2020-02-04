@@ -7,7 +7,6 @@
 //  https://github.com/SmileZXLee/ZXCountDownView
 
 #import "ZXCountDownBtn.h"
-#import "ZXCountDownCore.h"
 #import "ZXCountDownDefine.h"
 @interface ZXCountDownBtn()
 @property(nonatomic,copy)NSString *orgText;
@@ -37,16 +36,21 @@
 }
 
 -(void)initOpr{
-    self.orgText = self.currentTitle;
-    self.orgTextColor = self.titleLabel.textColor;
-    self.orgBacColor = self.backgroundColor;
+    self.orgText = !self.orgText ? self.currentTitle : self.orgText;
+    self.orgTextColor = !self.orgTextColor ? self.titleLabel.textColor : self.orgTextColor;
+    self.orgBacColor = !self.orgBacColor ? self.backgroundColor : self.orgBacColor;
 }
 -(void)setCountDown:(long)countDownSec mark:(NSString *)mark resTextFormat:(textFormatBlock)textFormat{
     self.cdCore = [[ZXCountDownCore alloc]init];
     self.cdCore.disableScheduleStore = self.disableScheduleStore;
     ZXCountDownWeakSelf;
     [self.cdCore setCountDown:countDownSec mark:mark resBlock:^(long remainSec) {
-        NSString *btnTitle = textFormat(remainSec);
+        NSString *btnTitle;
+        if(textFormat){
+            btnTitle = textFormat(remainSec);
+        }else{
+            btnTitle = [NSString stringWithFormat:@"%ld",remainSec];
+        }
         if(remainSec > 0){
             [weakSelf setTitle:btnTitle forState:UIControlStateNormal];
         }else{
@@ -67,6 +71,9 @@
     [self initOpr];
     [self.cdCore startCountDown];
 }
+-(void)pauseCountDown{
+    [self.cdCore pauseCountDown];
+}
 -(void)reStartCountDown{
     [self.cdCore reStartCountDown];
 }
@@ -78,5 +85,9 @@
 }
 -(void)dealloc{
     [self invalidateTimer];
+}
+
+- (ZXCountViewStatus)countViewStatus{
+    return self.cdCore.countViewStatus;
 }
 @end
