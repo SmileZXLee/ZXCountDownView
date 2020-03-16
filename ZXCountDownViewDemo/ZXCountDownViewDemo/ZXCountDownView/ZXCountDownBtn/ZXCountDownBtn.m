@@ -36,9 +36,11 @@
 }
 
 -(void)initOpr{
-    self.orgText = !self.orgText ? self.currentTitle : self.orgText;
-    self.orgTextColor = !self.orgTextColor ? self.titleLabel.textColor : self.orgTextColor;
-    self.orgBacColor = !self.orgBacColor ? self.backgroundColor : self.orgBacColor;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CGFLOAT_MIN * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.orgText = !self.orgText ? self.currentTitle : self.orgText;
+        self.orgTextColor = !self.orgTextColor ? self.titleLabel.textColor : self.orgTextColor;
+        self.orgBacColor = !self.orgBacColor ? self.backgroundColor : self.orgBacColor;
+    });
 }
 -(void)setCountDown:(long)countDownSec mark:(NSString *)mark resTextFormat:(textFormatBlock)textFormat{
     self.cdCore = [[ZXCountDownCore alloc]init];
