@@ -58,7 +58,7 @@ pod 'ZXCountDownView'
 - (IBAction)getCheckCodeAction:(id)sender {
     //判断如果手机号码不合法，可不触发倒计时
     if(0){
-        self.getCheckCodeBtn.start = NO;
+        self.getCheckCodeBtn.terminateCountDown = NO;
         return;
     }
     //如果需要过2秒再执行倒计时
